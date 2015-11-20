@@ -1,31 +1,37 @@
 import urllib2, google, bs4, re
+from stop_words import get_stop_words
 
-file = open("words.txt")
-words = file.read()
+def test():
+    file = open("words.txt")
+    words = file.read()
 
-q="who played spiderman"
-r = google.search(q,num=1,start=0,stop=1)
-l=[]
-for result in r:
-    l.append(result)
+    q="who played spiderman"
+    r = google.search(q,num=1,start=0,stop=1)
+    l=[]
+    for result in r:
+        l.append(result)
 
-#print l[0]
+    
+    u = urllib2.urlopen(l[0])
+    page = u.read()
+    soup = bs4.BeautifulSoup(page,'html')
+    raw = soup.get_text()
+    text = re.sub("[\t\n ]"," ",raw)
+    
+    exp = "[A-Z][a-z][a-z]+ [A-Z][a-z]+"
+    result = re.findall(exp,text);
+    goodWords=[]
 
-u = urllib2.urlopen(l[0])
-page = u.read()
-#print page
-soup = bs4.BeautifulSoup(page,'html')
-raw = soup.get_text()
-#print raw
-text = re.sub("[\t\n ]"," ",raw)
-#print text
+    for x in result:
+        z = x.split(" ")
+        if z[0].lower() not in words and z[1].lower() not in words:
+                goodWords.append(x)
+    return goodWords
 
-exp = "[A-Z][a-z][a-z]+ [A-Z][a-z]+"
-result = re.findall(exp,text);
-for x in result:
-    z = x.split(" ")
-    for y in x:
-        if z[0].lower() == y or z[1].lower() == y:
-            result.remove(x)
-            print result[0]
-print result
+def test2():
+    stop_words = get_stop_words('en')
+    return stop_words
+
+print test()
+
+
