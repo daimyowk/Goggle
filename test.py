@@ -24,7 +24,8 @@ exp = "[A-Z][a-z][a-z]+ [A-Z][a-z]+"
 result = re.findall(exp,text);
 for x in result:
     z = x.split(" ")
-    for y in words:
+    for y in x:
         if z[0].lower() == y or z[1].lower() == y:
             result.remove(x)
+            print result[0]
 print result
