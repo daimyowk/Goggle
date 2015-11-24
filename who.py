@@ -26,9 +26,9 @@ def findPerson(query):
     wordcounts={}
     for word in goodWords:
         if wordcounts.has_key(word):
-            wordscounts.word+=1
+            wordcounts.word+=1
         else:
-            wordscounts[word]=1
-    return wordscounts
+            wordcounts[word]=1
+    return wordcounts
 
 print findPerson("Who played Spider Man?")
