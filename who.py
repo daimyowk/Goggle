@@ -26,7 +26,7 @@ def findPerson(query):
     wordcounts={}
     for word in goodWords:
         if wordcounts.has_key(word):
-            wordcounts.word+=1
+            wordcounts[word]+=1
         else:
             wordcounts[word]=1
     return wordcounts
