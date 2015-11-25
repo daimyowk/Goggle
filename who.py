@@ -4,7 +4,7 @@ from stop_words import get_stop_words
 def findPerson(query):
     file = open("words.txt")
     words = file.read()
-    r = google.search(query, num = 10, start = 0, stop = 10)
+    r = google.search(query, num = 2, start = 0, stop = 2)
     l = []
     goodWords=[]
     exp = "[A-Z][a-z][a-z]+ [A-Z][a-z]+"
