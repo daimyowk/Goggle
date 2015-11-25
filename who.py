@@ -23,6 +23,12 @@ def findPerson(query):
             z = x.split(" ")
             if z[0].lower() not in words and z[1].lower() not in words:
                 goodWords.append(x)
-    return goodWords
+    wordcounts={}
+    for word in goodWords:
+        if wordcounts.has_key(word):
+            wordcounts[word]+=1
+        else:
+            wordcounts[word]=1
+    return wordcounts
 
 print findPerson("Who played Spider Man?")
