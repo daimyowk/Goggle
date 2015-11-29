@@ -100,9 +100,3 @@ def find_answer(question):
                 results[a]=1;
     return find_max(results)
 
-print find_answer("Who invented the lightbulb?")
-print find_answer("Who was secretary of state for FDR?")
-print find_answer("When did lincoln die?")
-print find_answer("Where was lincoln shot?")
-print find_answer("Where does Obama live?")
-print find_answer("when did the nazis surrender?")
