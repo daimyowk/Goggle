@@ -1,4 +1,5 @@
 import urllib2, google, bs4, re
+from stop_words import get_stop_words
 
 def search(question):
     """
@@ -48,21 +49,37 @@ def search_page(text,question):
     """
     #who,where or when question
     if re.search("(W|w)ho",question):
-        exp = "[A-Z][a-z]+ [A-Z][a-z]+"
+        exp = "[A-Z][a-z][a-z]+ [A-Z][a-z]+"
+        result = re.findall(exp,text)
     elif re.search("(W|w)hen",question):
-        exp= "([0-9]{1,4}/[0-9]{1,4}/[0-9]{1,4})|([A-Z][a-z]+ [0-9]{0,2}, [0-9]{0,4})"
+        exp = "([0-9]{1,4}/[0-9]{1,4}/[0-9]{1,4})|([A-Z][a-z]+ [0-9]{0,2}, [0-9]{0,4})"
+        result = re.finditer(exp,text)
     elif re.search("(W|w)here",question):
-        exp= "(T|t)he [A-Z][a-z]+ ?([A-Z][a-z]+ )+"
+        exp = "(T|t)he [A-Z][a-z]+ ?([A-Z][a-z]+ )+"
+        result = re.finditer(exp,text)
     else:
         raise SystemExit(0)
-    result = re.finditer(exp,text)
     ans = {}
-    for r in result:
-        a=r.group(0)
-        if a in ans:
-            ans[a]+=1;
-        else:
-            ans[a]=1;
+    if re.search("(W|w)ho",question):
+        file = open("words.txt")
+        words = file.read()
+        goodWords = []
+        for x in result:
+            z = x.split(" ")
+            if z[0].lower() not in words and z[1].lower() not in words:
+                goodWords.append(x)
+        for word in goodWords:
+            if ans.has_key(word):
+                ans[word]+=1
+            else:
+                ans[word]=1
+    else:
+        for r in result:
+            a=r.group(0)
+            if a in ans:
+                ans[a]+=1;
+            else:
+                ans[a]=1;
     return ans
             
 def find_max(dic):
@@ -100,3 +117,5 @@ def find_answer(question):
                 results[a]=1;
     return find_max(results)
 
+#print find_answer("Who played spiderman?")
+#print find_answer("when was the declaration of independence signed?")
