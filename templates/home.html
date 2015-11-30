@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <h1><center>I am Lord Goggle</center></h1>
-<center><img src="../static/LordGoggle.jpg" height="250" width="250"></center>
+<center><img src="http://www.yourwebgraphics.com/gallery/data/thumbnails/392/Man-With-Question-05.png" height="250" width="250"></center>
 <br>
 <br>
 <h1><center>What dost thou wish to know?</center></h1>
@@ -9,6 +9,9 @@
   <h2><center>What is thy question?</center></h2>
   <center>
     <input type="text" name="query">
-    <input type="submit" name="button" value="Go">
+    <input type="submit" name="button" value="Go"><br><br>
+    {% if error %}
+    <font color="red">{{ error }}</font>
+    {% endif %}
     </center>
 </form>

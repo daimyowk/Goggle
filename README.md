@@ -11,3 +11,5 @@
 # Notes
   - Who and When questions work
   - Where questions do not
+  - very slow at time
+  - static folder with Lord Goggle missing
