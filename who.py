@@ -1,23 +1,25 @@
 import urllib2, google, bs4, re
 from stop_words import get_stop_words
+import utils
 
 def findPerson(query):
+    """
+    returns the name that shows up the most from the google search of the query
+
+    arguments:
+      string of the question
+
+    return:
+      name of a person
+    """   
     file = open("words.txt")
     words = file.read()
-    r = google.search(query, num = 2, start = 0, stop = 2)
-    l = []
+    l = utils.search(query)
     goodWords=[]
-    exp = "[A-Z][a-z][a-z]+ [A-Z][a-z]+"
-
-    for result in r:
-        l.append(result)  
+    exp = "[A-Z][a-z][a-z]+ [A-Z][a-z]+"  
         
     for pages in l:
-        u = urllib2.urlopen(pages)
-        page = u.read()
-        soup = bs4.BeautifulSoup(page, 'html')
-        raw = soup.get_text()
-        text = re.sub("[\t\n ]", " ", raw)
+        text = re.sub("[\t\n ]", " ", utils.get_page(pages))
         result = re.findall(exp, text)
         for x in result:
             z = x.split(" ")
@@ -35,6 +37,4 @@ def findPerson(query):
             person = word
     return person
 
-        
-
-print findPerson("Who played Spider Man?")
+#print findPerson("Who played Spider Man?")
