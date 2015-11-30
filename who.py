@@ -29,6 +29,12 @@ def findPerson(query):
             wordcounts[word]+=1
         else:
             wordcounts[word]=1
-    return wordcounts
+    person = wordcounts.keys()[0]
+    for word in wordcounts:
+        if wordcounts[word] > wordcounts[person]:
+            person = word
+    return person
+
+        
 
 print findPerson("Who played Spider Man?")
