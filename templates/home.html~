@@ -1,0 +1,9 @@
+<!DOCTYPE HTML>
+
+<h1>What dost thou wish to know?</h1>
+
+<form method="POST">
+  <h2>Enter thy question</h2>
+  <input type="text" name="query">
+  <input type="submit" name="button" value="Go">
+</form>
