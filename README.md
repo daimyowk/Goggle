@@ -6,7 +6,7 @@
   - Darwin Chiu
 
 # Description
-  - Ask questions and Lord Google will answer them
+  - Ask questions and Lord Goggle will answer them
 
 # Notes
   - Who and When questions work
