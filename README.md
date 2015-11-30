@@ -1,7 +1,7 @@
 # Goggle
 
 # Team
-  - Kahsoon Yap
+  - Kah Soon Yap
   - Javis Wu
   - Darwin Chiu
 
